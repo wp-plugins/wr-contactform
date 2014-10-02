@@ -17,7 +17,6 @@ WR ContactForm is the ultimate solution for anyone who wants to build online for
 
 <h4>Key Features:</h4>
 
-
 * <b>Flexible Fields Use</b>: Create exactly what you want, for any purpose with wide range of form fields.
 
 * <b>Fully Responsive</b>: All screen sizes and mobile devices are supported. A must-have feature for your menu in this golden age of mobile and big screens.
@@ -29,7 +28,7 @@ WR ContactForm is the ultimate solution for anyone who wants to build online for
 
 * <b>Form Entry Storage</b>: WR ContactForm automatically stores form entries, so you can totally manage all form entries.
 * <b>Strong Anti-spam Mechanism</b>: WR ContactForm helps you to prevent spam by our CAPTCHA system.
-* <b>Email Notification System</b>: A real-time email notification system helps you enhance your website’s responsiveness.
+* <b>Email Notification System</b>: A real-time email notification system helps you enhance your website's responsiveness.
 * <b>Easy Customization</b>: We provide you with tons of customization for your form: form type, layout, style, etc.
 
 
