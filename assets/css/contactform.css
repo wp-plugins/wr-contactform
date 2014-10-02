@@ -1747,12 +1747,11 @@ html.wr-contactform-modal {
 #email .wr-cf-panel {
 	border: 1px solid #E5E5E5;
 	border-radius: 4px;
-    margin-bottom: 20px;
+    margin-bottom: 8px;
 }
 
 #email .wr-cf-panel-heading {
 	padding: 0px;
-	border-bottom: 1px solid #E5E5E5;
 	cursor: pointer;
 }
 
@@ -1764,6 +1763,7 @@ html.wr-contactform-modal {
 
 #email .wr-cf-panel-body {
 	padding: 25px 20px 0px 20px;
+	border-top: 1px solid #E5E5E5;
 }
 
 #email .wr-cf-panel-body .select2-search-choice {
