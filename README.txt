@@ -8,7 +8,7 @@ License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
 
-WR ContactForm is the ultimate solution for anyone who wants to build online forms
+WR ContactForm is the ultimate solution for anyone who wants to build online forms.
 
 == Description ==
 
@@ -18,18 +18,15 @@ WR ContactForm is the ultimate solution for anyone who wants to build online for
 <h4>Key Features:</h4>
 
 * <b>Flexible Fields Use</b>: Create exactly what you want, for any purpose with wide range of form fields.
-
 * <b>Fully Responsive</b>: All screen sizes and mobile devices are supported. A must-have feature for your menu in this golden age of mobile and big screens.
-
 * <b>Intuitive Layout</b>: Create exactly what you want, for any purpose with wide range of form fields.
-
 * <b>Drag & Drop Management</b>: Create your desired menu with just little simple drag & drop steps.
 * <b>Multi-column and Pages Form</b>: Divide your form into columns and pages depending on the length of your form. No page and column limitation.
-
 * <b>Form Entry Storage</b>: WR ContactForm automatically stores form entries, so you can totally manage all form entries.
 * <b>Strong Anti-spam Mechanism</b>: WR ContactForm helps you to prevent spam by our CAPTCHA system.
 * <b>Email Notification System</b>: A real-time email notification system helps you enhance your website's responsiveness.
 * <b>Easy Customization</b>: We provide you with tons of customization for your form: form type, layout, style, etc.
+* <b>MailChimp intergration</b>: Yes now you have all the power from MailChimp with WR ContactForm.
 
 
 <h4>Support</h4>
@@ -40,14 +37,14 @@ WR ContactForm is the ultimate solution for anyone who wants to build online for
 
 == Installation ==
 1. Upload WR ContactForm to the /wp-content/plugins/ directory
-2. Activate the plugin through the \\\\\\\'Plugins\\\\\\\' menu in WordPress
+2. Activate the plugin through the 'Plugins' menu in WordPress
 
 == Screenshots ==
 
-1. WR ContactForm layout
-2. WR ContactForm Fields
-3. Form Style
-4. Form Entries Store
+1. WR ContactForm prebuilt forms
+2. WR ContactForm elements
+3. Drag and drop management
+4. Form action setting
 
 == More Details ==
 
