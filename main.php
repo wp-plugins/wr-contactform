@@ -1,6 +1,6 @@
 <?php
 /**
- * Plugin Name: WR ContactForm
+ * Plugin Name: WR Contact Form
  * Plugin URI: http://woorockets.com
  * Description: Super easy form builder bringing to your Wordpress website contact form, survey and much more.
  * Version: 1.1.0
