@@ -31,6 +31,7 @@ WR Contact Form is the ultimate solution for anyone who wants to build online fo
 
 <h4>Support</h4>
 
+* <a href="http://support.woorockets.com">Support Forum</a>
 * <a href="http://www.woorockets.com/docs/wr-contactform-user-manual/">Document</a>
 
 <i>*If you like the plugin, please vote for it!*</i>
