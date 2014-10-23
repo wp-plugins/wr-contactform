@@ -14,9 +14,9 @@ WR Contact Form is the ultimate solution for anyone who wants to build online fo
 
 WR Contact Form is the ultimate solution for anyone who wants to build online forms. With this plugin, you can easily create from normal to complex forms for your WordPress website within a few minutes. You'll surely love it for its intuitive and highly UX-focused features: clean, responsive, drag-and-drop interface, various form options, easy configuration, no coding required, allowing a custom-built look and easy developer deployment as well as many more features. Download and use WR Contact Form and you'll see it's the only WordPress form builder plugin you'll ever need.
 
-More details: <a href="http://www.woorockets.com/plugins/wr-contactform/">http://www.woorockets.com/plugins/wr-contactform</a>
+<b>More detail:</b> <a href="http://www.woorockets.com/plugins/wr-contactform/">http://www.woorockets.com/plugins/wr-contactform</a>
 
-See demo: <a href="http://demo.woorockets.com/plugins/wr-contactform/">http://demo.woorockets.com/plugins/wr-contactform</a>
+<b>See demo:</b> <a href="http://demo.woorockets.com/plugins/wr-contactform/">http://demo.woorockets.com/plugins/wr-contactform</a>
 
 <h4>Key Features:</h4>
 
