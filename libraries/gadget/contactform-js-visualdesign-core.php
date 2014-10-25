@@ -51,7 +51,7 @@ class WR_CF_Gadget_Contactform_Js_Visualdesign_Core extends WR_CF_Gadget_Base {
 				        JSNVisualDesign.optionsBoxContent.css(\'display\', \'block\');
 				        JSNVisualDesign.optionsBoxContent.append($(\'<div class="arrow" />\'));
 				        JSNVisualDesign.optionsBoxContent.append($(\'<h3 class="popover-title">Properties</h3>\'));
-				        JSNVisualDesign.optionsBoxContent.append($(\'<div class="popover-content"><form><div class="tabs"><ul><li class="active"><a data-toggle="tab" href="#visualdesign-options-general">General</a></li><li><a data-toggle="tab" href="#visualdesign-options-values">Values</a></li></ul><div id="visualdesign-options-general" class="tab-pane active"></div><div id="visualdesign-options-values" class="tab-pane"></div></div></form></div>\'));
+				        JSNVisualDesign.optionsBoxContent.append($(\'<div class="popover-content"><form><div class="tabs"><ul><li class="active"><a data-toggle="tab" href="#visualdesign-options-general">General</a></li><li><a data-toggle="tab" href="#visualdesign-options-values">Values</a></li><a class="btn quick-edit-style">Edit Style</a></ul><div id="visualdesign-options-general" class="tab-pane active"></div><div id="visualdesign-options-values" class="tab-pane"></div></div></form></div>\'));
 				        JSNVisualDesign.optionsBox.append(JSNVisualDesign.optionsBoxContent);';
 		/* Create filter render html add box content*/
 		$addBoxContent = apply_filters( 'wr_contactform_visualdesign_add_box_content', $addBoxContent );
@@ -552,8 +552,11 @@ class WR_CF_Gadget_Contactform_Js_Visualdesign_Core extends WR_CF_Gadget_Base {
 				                    insertOrderedList:{ visible:true },
 				                    insertUnorderedList:{ visible:true },
 				                    insertHorizontalRule:{ visible:true },
+				                    h1:{ visible:false },
+				                    h2:{ visible:false },
+				                    h3:{ visible:false },
 				                    h4:{
-				                        visible:true,
+				                        visible:false,
 				                        className:\'h4\',
 				                        command:($.browser.msie || $.browser.safari) ? \'formatBlock\' : \'heading\',
 				                        arguments:($.browser.msie || $.browser.safari) ? \'<h4>\' : \'h4\',
@@ -561,7 +564,7 @@ class WR_CF_Gadget_Contactform_Js_Visualdesign_Core extends WR_CF_Gadget_Base {
 				                        tooltip:\'Header 4\'
 				                    },
 				                    h5:{
-				                        visible:true,
+				                        visible:false,
 				                        className:\'h5\',
 				                        command:($.browser.msie || $.browser.safari) ? \'formatBlock\' : \'heading\',
 				                        arguments:($.browser.msie || $.browser.safari) ? \'<h5>\' : \'h5\',
@@ -569,7 +572,7 @@ class WR_CF_Gadget_Contactform_Js_Visualdesign_Core extends WR_CF_Gadget_Base {
 				                        tooltip:\'Header 5\'
 				                    },
 				                    h6:{
-				                        visible:true,
+				                        visible:false,
 				                        className:\'h6\',
 				                        command:($.browser.msie || $.browser.safari) ? \'formatBlock\' : \'heading\',
 				                        arguments:($.browser.msie || $.browser.safari) ? \'<h6>\' : \'h6\',
@@ -621,6 +624,18 @@ class WR_CF_Gadget_Contactform_Js_Visualdesign_Core extends WR_CF_Gadget_Base {
 				            JSNVisualDesign.optionsBoxContent.find(\'a[href^="#visualdesign-options-values"]\').parent().hide();
 				        } else {
 				            JSNVisualDesign.optionsBoxContent.find(\'a[href^="#visualdesign-options-values"]\').parent().show();
+				        }
+				        if (options.quickeditstyle === undefined) {
+				            JSNVisualDesign.optionsBoxContent.find(\'.quick-edit-style\').hide();
+				        } else {
+				            JSNVisualDesign.optionsBoxContent.find(\'.quick-edit-style\').off(\'click\');
+				            JSNVisualDesign.optionsBoxContent.find(\'.quick-edit-style\').on(\'click\', function() {
+				                JSNVisualDesign.closeOptionsBox();
+				                $(\'#select_form_style\').click();
+				                $(\'#container-select-style a[href="#formStyle\' + options.quickeditstyle.tab + \'"]\').click();
+				                $(window).scrollTop($(\'#select_form_style\').offset().top - 40);
+				            });
+				            JSNVisualDesign.optionsBoxContent.find(\'.quick-edit-style\').show();
 				        }
 				        JSNVisualDesign.optionsBoxContent.find(\'div[id^="visualdesign-options-"]\').removeClass(\'active\').empty();
 				        JSNVisualDesign.optionsBoxContent.find(\'div#visualdesign-options-general\').addClass(\'active\');

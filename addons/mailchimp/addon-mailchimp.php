@@ -226,7 +226,7 @@ class WR_CF_Addon_Mailchimp {
 	public function filter_submission_value( $value, $type ) {
 		switch ( $type ) {
 			case 'name':
-				$data = json_decode( $value );
+				$data = json_decode( html_entity_decode( $value ) );
 				$value = $data->title . ' ' . $data->first . ' ' . $data->suffix . ' ' . $data->last;
 				break;
 			case 'likert':
@@ -249,7 +249,7 @@ class WR_CF_Addon_Mailchimp {
 				}
 				break;
 			case 'address':
-				$data = json_decode( $value );
+				$data = json_decode( html_entity_decode( $value ) );
 				if ( $data->street != '' ) {
 					$value = $data->street;
 				}

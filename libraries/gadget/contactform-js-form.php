@@ -115,8 +115,11 @@ class WR_CF_Gadget_Contactform_Js_Form extends WR_CF_Gadget_Base {
 				                        insertOrderedList:{ visible:true },
 				                        insertUnorderedList:{ visible:true },
 				                        insertHorizontalRule:{ visible:true },
+				                        h1:{ visible:false },
+				                        h2:{ visible:false },
+				                        h3:{ visible:false },
 				                        h4:{
-				                            visible:true,
+				                            visible:false,
 				                            className:"h4",
 				                            command:($.browser.msie || $.browser.safari) ? "formatBlock" : "heading",
 				                            arguments:($.browser.msie || $.browser.safari) ? "<h4>" : "h4",
@@ -124,7 +127,7 @@ class WR_CF_Gadget_Contactform_Js_Form extends WR_CF_Gadget_Base {
 				                            tooltip:"Header 4"
 				                        },
 				                        h5:{
-				                            visible:true,
+				                            visible:false,
 				                            className:"h5",
 				                            command:($.browser.msie || $.browser.safari) ? "formatBlock" : "heading",
 				                            arguments:($.browser.msie || $.browser.safari) ? "<h5>" : "h5",
@@ -132,7 +135,7 @@ class WR_CF_Gadget_Contactform_Js_Form extends WR_CF_Gadget_Base {
 				                            tooltip:"Header 5"
 				                        },
 				                        h6:{
-				                            visible:true,
+				                            visible:false,
 				                            className:"h6",
 				                            command:($.browser.msie || $.browser.safari) ? "formatBlock" : "heading",
 				                            arguments:($.browser.msie || $.browser.safari) ? "<h6>" : "h6",

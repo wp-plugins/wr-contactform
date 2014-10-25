@@ -70,10 +70,10 @@ class WR_CF_Gadget_Contactform_Js_Submission extends WR_CF_Gadget_Base {
 					                    $(this).attr("oldValue", $(this).val());
 
 					                    if (type != "email") {
-					                        $("dd#" + key).html($(this).val());
+					                        $("dd#" + key).html($(this).val().replace(/[\u00A0-\u9999<>\&]/gim, function(i) { return \'&#\'+i.charCodeAt(0)+\';\'; }));
 					                    } else {
 					                        if ($(this).val()) {
-					                            $("dd#" + key + " a").html($(this).val());
+					                            $("dd#" + key + " a").html($(this).val().replace(/[\u00A0-\u9999<>\&]/gim, function(i) { return \'&#\'+i.charCodeAt(0)+\';\'; }));
 					                        } else {
 					                            $("dd#" + key + " a").html("N/A");
 					                        }

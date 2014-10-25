@@ -67,6 +67,9 @@ class WR_CF_Gadget_Controls_Form_Actions {
 						'type' => 'text',
 						'label' => 'Prev Button Text'
 					)
+				),
+				'quickeditstyle' => array(
+					'tab' => 'Buttons'
 				)
 			),
 			'tmpl' => 'Form Action'

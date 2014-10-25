@@ -161,7 +161,10 @@ foreach ( $formContent as $formPages ) {
 					$contentFieldDetail = $contentField;
 				}
 			}
-			$submissionDetail .= $contentFieldDetail ? str_replace( '\n', '<br/>', trim( $contentFieldDetail ) ) : 'N/A';
+			if ( isset( $fields->type ) && $fields->type == 'likert' )
+				$submissionDetail .= $contentFieldDetail ? str_replace( '\n', '<br/>', trim( $contentFieldDetail ) ) : 'N/A';
+			else
+				$submissionDetail .= $contentFieldDetail ? str_replace( '\n', '<br/>', htmlentities( html_entity_decode( trim( $contentFieldDetail ) ) ) ) : 'N/A';
 			if ( isset( $fields->type ) && ( $fields->type == 'checkboxes' || $fields->type == 'list' || $fields->type == 'paragraph-text' ) ) {
 				if ( $fields->type == 'checkboxes' || $fields->type == 'list' ) {
 					$contentFieldEdit = str_replace( '<br/>', "\n", $contentFieldEdit );
@@ -213,7 +216,7 @@ foreach ( $formContent as $formPages ) {
 				$submissionEdit .= $contentFieldEdit;
 			}
 			else {
-				$submissionEdit .= '<input type="text" name="submission[' . $key . ']" dataValue="' . $fields->id . '" typeValue="' . $fields->type . '" class="jsn-input-xxlarge-fluid" value="' . $contentFieldEdit . '" />';
+				$submissionEdit .= '<input type="text" name="submission[' . $key . ']" dataValue="' . $fields->id . '" typeValue="' . $fields->type . '" class="jsn-input-xxlarge-fluid" value="' . htmlentities( html_entity_decode( $contentFieldEdit ) ) . '" />';
 			}
 			$submissionEdit .= '</div></div>';
 			$submissionDetail .= '</dd>';

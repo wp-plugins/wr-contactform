@@ -71,8 +71,8 @@
 				'<option value="">{floatNone}</option>' +
 				'<option value="left">{floatLeft}</option>' +
 				'<option value="right">{floatRight}</option></select></div></div>' +
-				'<div class="form-row form-row-last"><label for="name"></label><div class="form-row-value"><input type="submit" class="button" value="{submit}"/> ' +
-				'<input type="reset" value="{reset}"/></div></div></fieldset></form>';
+				'<div class="form-row form-row-last"><label for="name"></label><div class="form-row-value"><input type="submit" class="wysiwyg-standard-btn" value="{submit}"/> ' +
+				'<input type="reset" class="wysiwyg-standard-btn" value="{reset}"/></div></div></fieldset></form>';
 
 			for (key in dialogReplacements) {
 				if ($.wysiwyg.i18n) {

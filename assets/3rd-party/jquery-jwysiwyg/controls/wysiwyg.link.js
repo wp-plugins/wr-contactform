@@ -21,7 +21,7 @@
 	*/
 	$.wysiwyg.controls.link = {
 		init: function (Wysiwyg) {
-			var self = this, elements, dialog, url, a, selection,
+			var self = this, adialog, elements, dialog, url, a, selection,
 				formLinkHtml, dialogReplacements, key, translation, regexp,
 				baseUrl, img;
 
@@ -34,12 +34,12 @@
 				reset: "Cancel"
 			};
 
-			formLinkHtml = '<form class="wysiwyg"><fieldset><legend>{legend}</legend>' +
-				'<label>{url}: <input type="text" name="linkhref" value=""/></label>' +
-				'<label>{title}: <input type="text" name="linktitle" value=""/></label>' +
-				'<label>{target}: <input type="text" name="linktarget" value=""/></label>' +
-				'<input type="submit" class="button" value="{submit}"/> ' +
-				'<input type="reset" value="{reset}"/></fieldset></form>';
+			formLinkHtml = '<form class="wysiwyg" id="wysiwyg-linkInsert"><fieldset>' +
+				'<div class="form-row"><label>{url}:</label><div class="form-row-value"><input type="text" name="linkhref" value="" /></div></div>' +
+				'<div class="form-row"><label>{title}:</label><div class="form-row-value"><input type="text" name="linktitle" value="" /></div></div>' +
+				'<div class="form-row"><label>{target}:</label><div class="form-row-value"><input type="text" name="linktarget" value="" /></div></div>' +
+				'<div class="form-row form-row-last"><label></label><div class="form-row-value"><input type="submit" class="wysiwyg-standard-btn" value="{submit}"/> ' +
+				'<input type="reset" class="wysiwyg-standard-btn" value="{reset}"/></div></div></fieldset></form>';
 
 			for (key in dialogReplacements) {
 				if ($.wysiwyg.i18n) {
@@ -69,156 +69,78 @@
 				a.target = a.self.target ? a.self.target : "";
 			}
 
-			if ($.fn.dialog) {
-				elements = $(formLinkHtml);
-				elements.find("input[name=linkhref]").val(a.href);
-				elements.find("input[name=linktitle]").val(a.title);
-				elements.find("input[name=linktarget]").val(a.target);
+			adialog = new $.wysiwyg.dialog(Wysiwyg, {
+				"title"   : dialogReplacements.legend,
+				"content" : formLinkHtml,
+				"open"    : function (e, dialog) {
+					dialog.find("input[name=linkhref]").val(a.href);
+					dialog.find("input[name=linktitle]").val(a.title);
+					dialog.find("input[name=linktarget]").val(a.target);
+					dialog.find("form#wysiwyg-linkInsert").submit(function (e) {
+						e.preventDefault();
+						var url = dialog.find("input[name=linkhref]").val(),
+						    title = dialog.find("input[name=linktitle]").val(),
+						    target = dialog.find("input[name=linktarget]").val(),
+						    baseUrl,
+						    img;
 
-				if ($.browser.msie) {
-					try {
-						dialog = elements.appendTo(Wysiwyg.editorDoc.body);
-					} catch (err) {
-						dialog = elements.appendTo("body");
-					}
-				} else {
-					dialog = elements.appendTo("body");
-				}
-
-				dialog.dialog({
-					modal: true,
-					open: function (ev, ui) {
-						$("input:submit", dialog).click(function (e) {
-							e.preventDefault();
-
-							var url = $('input[name="linkhref"]', dialog).val(),
-								title = $('input[name="linktitle"]', dialog).val(),
-								target = $('input[name="linktarget"]', dialog).val(),
-								baseUrl,
-								img;
-
-							if (Wysiwyg.options.controlLink.forceRelativeUrls) {
-								baseUrl = window.location.protocol + "//" + window.location.hostname;
-								if (0 === url.indexOf(baseUrl)) {
-									url = url.substr(baseUrl.length);
-								}
+						if (Wysiwyg.options.controlLink.forceRelativeUrls) {
+							baseUrl = window.location.protocol + "//" + window.location.hostname;
+							if (0 === url.indexOf(baseUrl)) {
+								url = url.substr(baseUrl.length);
 							}
-
-							if (a.self) {
-								if ("string" === typeof (url)) {
-									if (url.length > 0) {
-										// to preserve all link attributes
-										$(a.self).attr("href", url).attr("title", title).attr("target", target);
-									} else {
-										$(a.self).replaceWith(a.self.innerHTML);
-									}
-								}
-							} else {
-								if ($.browser.msie) {
-									Wysiwyg.ui.returnRange();
-								}
-
-								//Do new link element
-								selection = Wysiwyg.getRangeText();
-								img = Wysiwyg.dom.getElement("img");
-
-								if ((selection && selection.length > 0) || img) {
-									if ($.browser.msie) {
-										Wysiwyg.ui.focus();
-									}
-
-									if ("string" === typeof (url)) {
-										if (url.length > 0) {
-											Wysiwyg.editorDoc.execCommand("createLink", false, url);
-										} else {
-											Wysiwyg.editorDoc.execCommand("unlink", false, null);
-										}
-									}
-
-									a.self = Wysiwyg.dom.getElement("a");
-
-									$(a.self).attr("href", url).attr("title", title);
-
-									/**
-									 * @url https://github.com/akzhan/jwysiwyg/issues/16
-									 */
-									$(a.self).attr("target", target);
-								} else if (Wysiwyg.options.messages.nonSelection) {
-									window.alert(Wysiwyg.options.messages.nonSelection);
-								}
-							}
-
-							Wysiwyg.saveContent();
-
-							$(dialog).dialog("close");
-
-							 Wysiwyg.ui.focus();
-							 return false;
-						});
-						$("input:reset", dialog).click(function (e) {
-							e.preventDefault();
-							$(dialog).dialog("close");
-							Wysiwyg.ui.focus();
-						});
-					},
-					close: function (ev, ui) {
-						dialog.dialog("destroy");
-						dialog.remove();
-						Wysiwyg.ui.focus();
-					}
-				});
-			} else {
-				if (a.self) {
-					url = window.prompt("URL", a.href);
-
-					if (Wysiwyg.options.controlLink.forceRelativeUrls) {
-						baseUrl = window.location.protocol + "//" + window.location.hostname;
-						if (0 === url.indexOf(baseUrl)) {
-							url = url.substr(baseUrl.length);
 						}
-					}
 
-					if ("string" === typeof (url)) {
-						if (url.length > 0) {
-							$(a.self).attr("href", url);
-						} else {
-							$(a.self).replaceWith(a.self.innerHTML);
-						}
-					}
-				} else {
-					//Do new link element
-					selection = Wysiwyg.getRangeText();
-					img = Wysiwyg.dom.getElement("img");
-
-					if ((selection && selection.length > 0) || img) {
-						if ($.browser.msie) {
-							Wysiwyg.ui.focus();
-							Wysiwyg.editorDoc.execCommand("createLink", true, null);
-						} else {
-							url = window.prompt(dialogReplacements.url, a.href);
-
-							if (Wysiwyg.options.controlLink.forceRelativeUrls) {
-								baseUrl = window.location.protocol + "//" + window.location.hostname;
-								if (0 === url.indexOf(baseUrl)) {
-									url = url.substr(baseUrl.length);
-								}
-							}
-
+						if (a.self) {
 							if ("string" === typeof (url)) {
 								if (url.length > 0) {
-									Wysiwyg.editorDoc.execCommand("createLink", false, url);
+									// to preserve all link attributes
+									$(a.self).attr("href", url).attr("title", title).attr("target", target);
 								} else {
-									Wysiwyg.editorDoc.execCommand("unlink", false, null);
+									$(a.self).replaceWith(a.self.innerHTML);
 								}
 							}
-						}
-					} else if (Wysiwyg.options.messages.nonSelection) {
-						window.alert(Wysiwyg.options.messages.nonSelection);
-					}
-				}
+						} else {
+							//Do new link element
+							selection = Wysiwyg.getRangeText();
+							img = Wysiwyg.dom.getElement("img");
 
-				Wysiwyg.saveContent();
-			}
+							if ((selection && selection.length > 0) || img) {
+								if ("string" === typeof (url)) {
+									if (url.length > 0) {
+										Wysiwyg.editorDoc.execCommand("createLink", false, url);
+									} else {
+										Wysiwyg.editorDoc.execCommand("unlink", false, null);
+									}
+								}
+
+								a.self = Wysiwyg.dom.getElement("a");
+
+								$(a.self).attr("href", url).attr("title", title);
+
+								/**
+								 * @url https://github.com/akzhan/jwysiwyg/issues/16
+								 */
+								$(a.self).attr("target", target);
+							} else if (Wysiwyg.options.messages.nonSelection) {
+								window.alert(Wysiwyg.options.messages.nonSelection);
+							}
+						}
+
+						Wysiwyg.saveContent();
+
+						adialog.close();
+						return false;
+					});
+					dialog.find("input:reset").click(function (e) {
+						e.preventDefault;
+						adialog.close();
+						return false;
+					});
+				}
+			});
+
+			adialog.open();
 
 			$(Wysiwyg.editorDoc).trigger("editorRefresh.wysiwyg");
 		}

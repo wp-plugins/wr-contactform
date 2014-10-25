@@ -77,6 +77,7 @@ class WR_CF_Gadget_Contactform_Js_Form_Frontend extends WR_CF_Gadget_Base {
 					                        } else if (error) {
 					                            error = $.evalJSON(error);
 					                            self.callMessageError(formname, error);
+					                            self.createRecaptcha(selfsubmit, publickey, error);
 					                            $(".jsn-modal-overlay,.jsn-modal-indicator").remove();
 					                        } else if (message) {
 					                            $.ajax({
@@ -105,7 +106,10 @@ class WR_CF_Gadget_Contactform_Js_Form_Frontend extends WR_CF_Gadget_Base {
 					                                    self.initJSNForm(formname);
 					                                    var messagesFocus = $(formname).find(".message-contactform")[0];
 					                                    $(window).scrollTop($(messagesFocus).offset().top - 50);
-					                                    $(".jsn-modal-overlay,.jsn-modal-indicator").remove();
+					                                    setTimeout( function() {
+					                                        self.createRecaptcha(selfsubmit, publickey, error);
+					                                        $(".jsn-modal-overlay,.jsn-modal-indicator").remove();
+					                                    }, 1000 );
 					                                }
 					                            });
 					                        } else {
@@ -123,44 +127,10 @@ class WR_CF_Gadget_Contactform_Js_Form_Frontend extends WR_CF_Gadget_Base {
 					                                    self.initJSNForm(formname);
 					                                    var messagesFocus = $(formname).find(".message-contactform")[0];
 					                                    $(window).scrollTop($(messagesFocus).offset().top - 50);
-					                                    $(".jsn-modal-overlay,.jsn-modal-indicator").remove();
-					                                }
-					                            });
-					                        }
-					                        var idcaptcha;
-					                        idcaptcha = $(selfsubmit).find(".form-captcha").attr("id");
-					                        if (idcaptcha) {
-					                            Recaptcha.destroy();
-					                            Recaptcha.create(publickey, idcaptcha, {
-					                                theme:\'white\',
-					                                tabindex:0,
-					                                callback:function () {
-					                                    $(selfsubmit).find(".form-captcha").removeClass("error");
-					                                    $(selfsubmit).find(".form-captcha #recaptcha_area").addClass("controls");
-					                                    $(selfsubmit).find("#recaptcha_response_field").keypress(function (e) {
-					                                        if (e.which == 13) {
-					                                            if ($(formname).find("button.next").hasClass("hide")) {
-					                                                $(formname).find("button.jsn-form-submit").click();
-					                                            } else {
-					                                                $(formname).find("button.next").click();
-					                                            }
-					                                            return false;
-					                                        }
-					                                    });
-					                                    if (error) {
-					                                        if (error.captcha) {
-					                                            $(selfsubmit).find(".form-captcha").addClass("error");
-					                                            $(selfsubmit).find(".form-captcha #recaptcha_area").append(
-					                                                $("<span/>", {
-					                                                    "class":"help-block"
-					                                                }).append(
-					                                                    $("<span/>", {
-					                                                        "class":"validation-result label label-important",
-					                                                        text:error.captcha
-					                                                    })));
-					                                            $(selfsubmit).find("#recaptcha_response_field").focus();
-					                                        }
-					                                    }
+					                                    setTimeout( function() {
+					                                        self.createRecaptcha(selfsubmit, publickey, error);
+					                                        $(".jsn-modal-overlay,.jsn-modal-indicator").remove();
+					                                    }, 1000 );
 					                                }
 					                            });
 					                        }
@@ -702,14 +672,53 @@ class WR_CF_Gadget_Contactform_Js_Form_Frontend extends WR_CF_Gadget_Base {
 					                        $(form).find(".form-captcha #recaptcha_area").addClass("controls");
 					                        $(form).find("#recaptcha_response_field").keypress(function (e) {
 					                            if (e.which == 13) {
-					                                if ($(formname).find("button.next").hasClass("hide")) {
-					                                    $(formname).find("button.jsn-form-submit").click();
+					                                if ($(form).find("button.next").hasClass("hide")) {
+					                                    $(form).find("button.jsn-form-submit").click();
 					                                } else {
-					                                   $(formname).find("button.next").click();
+					                                   $(form).find("button.next").click();
 					                                }
 					                                return false;
 					                            }
 					                        });
+					                    }
+					                });
+					            }
+					        };
+					        $.createRecaptcha = function (selfsubmit, publickey, error) {
+					            var idcaptcha;
+					            idcaptcha = $(selfsubmit).find(".form-captcha").attr("id");
+					            if (idcaptcha) {
+					                Recaptcha.destroy();
+					                Recaptcha.create(publickey, idcaptcha, {
+					                    theme:\'white\',
+					                    tabindex:0,
+					                    callback:function () {
+					                        $(selfsubmit).find(".form-captcha").removeClass("error");
+					                        $(selfsubmit).find(".form-captcha #recaptcha_area").addClass("controls");
+					                        $(selfsubmit).find("#recaptcha_response_field").keypress(function (e) {
+					                            if (e.which == 13) {
+					                                if ($(selfsubmit).find("button.next").hasClass("hide")) {
+					                                    $(selfsubmit).find("button.jsn-form-submit").click();
+					                                } else {
+					                                    $(selfsubmit).find("button.next").click();
+					                                }
+					                                return false;
+					                            }
+					                        });
+					                        if (error) {
+					                            if (error.captcha) {
+					                                $(selfsubmit).find(".form-captcha").addClass("error");
+					                                $(selfsubmit).find(".form-captcha #recaptcha_area").append(
+					                                    $("<span/>", {
+					                                        "class":"help-block"
+					                                    }).append(
+					                                        $("<span/>", {
+					                                            "class":"validation-result label label-important",
+					                                            text:error.captcha
+					                                        })));
+					                                $(selfsubmit).find("#recaptcha_response_field").focus();
+					                            }
+					                        }
 					                    }
 					                });
 					            }

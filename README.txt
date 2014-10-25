@@ -53,3 +53,14 @@ WR Contact Form is the ultimate solution for anyone who wants to build online fo
 == More Details ==
 
 For further information, product details, help and tutorials, please visit our website: http://woorockets.com/
+
+== Changelog ==
+
+= 1.1.1 =
+
+^Added new Edit Style button in Element Setting
+^Improved Export feature
+#Fixed Can't scroll up & down when using Add new form page on Chrome & Opera
+#Fixed Error XSS if enter special characters in Single Line Input/ Password/ Name/ Address/ Multi-line-input
+#Fixed Data of name & address displays not correctly in the View Submission screen
+#Fixed Recaptcha isn't displayed after submit form

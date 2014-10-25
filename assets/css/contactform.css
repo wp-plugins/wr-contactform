@@ -471,6 +471,10 @@ img.imgSelect2 {
     margin-left: 5px;
 }
 
+#visualdesign-options #option-limitType-select {
+	width: 100px;
+}
+
 #visualdesign-options-values .items-list {
     height: 150px;
 }
@@ -599,6 +603,12 @@ img.imgSelect2 {
 /*========== TOOLBOX ==========*/
 #visualdesign-options-values .extraShowTitle .form-inline .control-group  .controls > .radio:first-child {
     padding-top: 0;
+}
+
+#visualdesign-options .quick-edit-style {
+	float: right;
+	margin-top: 2px;
+	font-weight: normal;
 }
 
 .jsn-master .jsn-bootstrap .wr-field-prefix {
@@ -1366,7 +1376,7 @@ button#btn-select-field-message {
 }
 
 .ui-dialog {
-    z-index: 9999;
+    z-index: 99999;
 }
 
 .ui-widget-overlay.ui-front {
@@ -1852,4 +1862,20 @@ html.wr-contactform-modal {
 	line-height: 20px;
 	padding: 4px;
 	transition: all 0.2s ease-in-out 0s;
+}
+
+.wysiwyg-standard-btn {
+	border: 2px outset buttonface !important;
+	background: buttonface !important;
+	-webkit-box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1) !important;
+	box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1) !important;
+}
+
+.wysiwyg-standard-btn:hover {
+	color: black !important;
+}
+
+/* Fix bug scrollbar */
+html {
+	overflow-y: scroll !important;
 }

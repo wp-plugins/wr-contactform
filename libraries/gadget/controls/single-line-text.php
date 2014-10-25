@@ -123,6 +123,9 @@ class WR_CF_Gadget_Controls_Single_Line_Text {
 							)
 						)
 					)
+				),
+				'quickeditstyle' => array(
+					'tab' => 'Field'
 				)
 			),
 			'tmpl' => '<div class="control-group ${customClass} {{if hideField}}wr-hidden-field{{/if}}"><label class="control-label">${label}{{if required==1||required=="1"}}<span class="required">*</span>{{/if}}{{if instruction}}<i class="icon-question-sign"></i><p class="wr-help-text">${instruction}</p>{{/if}}</label><div class="controls"><input type="text" placeholder="${value}" class="${size}"/></div></div>'

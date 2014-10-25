@@ -81,14 +81,14 @@ class WR_Contactform_Includes_Content {
 	 */
 	function filter_wr_contactform_get_content_field_address( $dataField, $fieldType, $submission, $key, $formId, $linkImg, $checkNull, $action ) {
 		if ( ! empty( $dataField ) ) {
-			$jsonAddress = json_decode( $dataField );
+			$jsonAddress = json_decode( html_entity_decode( $dataField ) );
 
 			if ( $jsonAddress ) {
-				$nameStreet = ! empty( $jsonAddress->street ) ? $jsonAddress->street . ', ' : '';
-				$nameLine2 = ! empty( $jsonAddress->line2 ) ? $jsonAddress->line2 . ', ' : '';
-				$nameCity = ! empty( $jsonAddress->city ) ? $jsonAddress->city . ', ' : '';
-				$nameCode = ! empty( $jsonAddress->code ) ? $jsonAddress->code . ' ' : '';
-				$nameState = ! empty( $jsonAddress->state ) ? $jsonAddress->state . ' ' : '';
+				$nameStreet = ! empty( $jsonAddress->street ) ? htmlentities( $jsonAddress->street ) . ', ' : '';
+				$nameLine2 = ! empty( $jsonAddress->line2 ) ? htmlentities( $jsonAddress->line2 ) . ', ' : '';
+				$nameCity = ! empty( $jsonAddress->city ) ? htmlentities( $jsonAddress->city ) . ', ' : '';
+				$nameCode = ! empty( $jsonAddress->code ) ? htmlentities( $jsonAddress->code ) . ' ' : '';
+				$nameState = ! empty( $jsonAddress->state ) ? htmlentities( $jsonAddress->state ) . ' ' : '';
 				$nameCountry = ! empty( $jsonAddress->country ) ? $jsonAddress->country . ' ' : '';
 				$contentField = $nameStreet . $nameLine2 . $nameCity . $nameState . $nameCode . $nameCountry;
 			}
@@ -123,12 +123,12 @@ class WR_Contactform_Includes_Content {
 	 */
 	function filter_wr_contactform_get_content_field_name( $dataField, $fieldType, $submission, $key, $formId, $linkImg, $checkNull, $action ) {
 		if ( ! empty( $dataField ) ) {
-			$jsonName = json_decode( $dataField );
+			$jsonName = json_decode( html_entity_decode( $dataField ) );
 			if ( $jsonName ) {
 				$nameTitle = isset( $jsonName->title ) ? $jsonName->title . ' ' : '';
-				$nameFirst = isset( $jsonName->first ) ? $jsonName->first . ' ' : '';
-				$nameLast = isset( $jsonName->last ) ? $jsonName->last : '';
-				$nameSuffix = isset( $jsonName->suffix ) ? $jsonName->suffix . ' ' : '';
+				$nameFirst = isset( $jsonName->first ) ? htmlentities( $jsonName->first ) . ' ' : '';
+				$nameLast = isset( $jsonName->last ) ? htmlentities( $jsonName->last ) : '';
+				$nameSuffix = isset( $jsonName->suffix ) ? htmlentities( $jsonName->suffix ) . ' ' : '';
 				if ( ! empty( $jsonName->first ) || ! empty( $jsonName->last ) || ! empty( $jsonName->suffix ) ) {
 					$contentField = $nameTitle . $nameFirst . $nameSuffix . $nameLast;
 				}

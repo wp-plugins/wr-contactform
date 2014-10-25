@@ -74,6 +74,10 @@ class WR_CF_Gadget_Contactform_Duplicate extends WR_CF_Gadget_Base {
 
 			// Fix bug duplicate value in postmeta table
 			update_post_meta( $post_id, 'form_post_action_data', get_post_meta( $form_id, 'form_post_action_data', true ) );
+			update_post_meta( $post_id, 'list_email_send_to', get_post_meta( $form_id, 'list_email_send_to', true ) );
+			update_post_meta( $post_id, 'list_email_send_to_submitter', get_post_meta( $form_id, 'list_email_send_to_submitter', true ) );
+			update_post_meta( $post_id, 'content_email_send_to', get_post_meta( $form_id, 'content_email_send_to', true ) );
+			update_post_meta( $post_id, 'content_email_send_to_submitter', get_post_meta( $form_id, 'content_email_send_to_submitter', true ) );
 
 			$getFormPages = $wpdb->get_results( $wpdb->prepare( "SELECT * FROM {$wpdb->prefix}wr_contactform_form_pages WHERE  form_id=%d", (int)$form_id ) );
 

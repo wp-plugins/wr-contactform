@@ -106,7 +106,7 @@ class WR_CF_Form_Field {
 	 */
 	public static function get_instance( $config, $merge = null ) {
 		// Generate object id
-		$id = md5( json_encode( $config, $merge ) );
+		$id = md5( json_encode( array( $config, $merge ) ) );
 
 		if ( ! isset( self::$instances[$id] ) ) {
 			$class = __CLASS__;

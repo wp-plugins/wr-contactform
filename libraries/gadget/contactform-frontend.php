@@ -418,6 +418,20 @@ class WR_CF_Gadget_Contactform_Frontend extends WR_CF_Gadget_Base {
 							$value = $getValue;
 						}
 					}
+
+					// htmlentities to form inputs
+					if ( in_array( $colum->field_type,
+							array(
+								'single-line-text',
+								'paragraph-text',
+								'address',
+								'name',
+								'password'
+							)
+						) ) {
+						$value = htmlentities( $value );
+					}
+
 					$submissionsData[ ] = array(
 						'form_id' => $postFormId,
 						'field_id' => $colum->field_id,

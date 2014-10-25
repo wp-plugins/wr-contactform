@@ -774,3 +774,13 @@ smartphone layout (320 - 480): everything is layout in single column
 .wr-captcha-block {
 	text-align: center;
 }
+
+.jsn-master .jsn-columns-container.jsn-columns-count-three .jsn-column-item {
+	width: 32%;
+}
+
+.jsn-master .jsn-bootstrap .wr-group-field input[type="text"] {
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    -ms-box-sizing: border-box;
+}
