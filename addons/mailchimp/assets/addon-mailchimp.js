@@ -355,12 +355,14 @@
 					$( thisList ).find( '.wr-cf-mailchimp-list-inside table .wr-cf-mailchimp-merge-field' ).each( function() {
 						if ( ( ! $( this ).find( '.wr-cf-mailchimp-select-fields' ).is( '[disabled="disabled"]' ) ) && ( $( this ).find( '.wr-cf-mailchimp-select-fields' ).val() != '' ) && ( thisSelectFields.val() != $( this ).find( '.wr-cf-mailchimp-select-fields' ).val() ) ) {
 							thisSelectFields.find( 'option[value="' + $( this ).find( '.wr-cf-mailchimp-select-fields' ).val() + '"]' ).attr( 'disabled', 'disabled' );
+							thisSelectFields.find( 'option[value="' + $( this ).find( '.wr-cf-mailchimp-select-fields' ).val() + '"]' ).appendTo( thisSelectFields );
 						}
 						if ( ( $( this ).find( '.wr-cf-mailchimp-check-other' ).is( ':checked' ) ) && ( $( this ).find( '.wr-cf-mailchimp-text-other' ).attr( 'data-tag' ) != '' ) ) {
 							thisSelectFields.find( 'option[value="' + $( this ).find( '.wr-cf-mailchimp-text-other' ).attr( 'data-tag' ) + '"]' ).remove();
 						}
 						if ( ( $( this ).find( '.wr-cf-mailchimp-select-form-fields' ).val() != '' ) && ( thisSelectFormFields.val() != $( this ).find( '.wr-cf-mailchimp-select-form-fields' ).val() ) ) {
 							thisSelectFormFields.find( 'option[value="' + $( this ).find( '.wr-cf-mailchimp-select-form-fields' ).val() + '"]' ).attr( 'disabled', 'disabled' );
+							thisSelectFormFields.find( 'option[value="' + $( this ).find( '.wr-cf-mailchimp-select-form-fields' ).val() + '"]' ).appendTo( thisSelectFormFields );
 						}
 					} );
 				} );

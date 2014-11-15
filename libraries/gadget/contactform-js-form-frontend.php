@@ -663,7 +663,7 @@ class WR_CF_Gadget_Contactform_Js_Form_Frontend extends WR_CF_Gadget_Base {
 					            var publickey = form.find(".form-captcha").attr("publickey");
 					            if (form.find(".form-captcha").length > 0 && form.find(".form-captcha").is(\':hidden\') && idcaptcha) {
 					                $(".form-captcha").hide();
-					                form.find(".form-captcha").show();
+					                //form.find(".form-captcha").show();
 					                Recaptcha.create(publickey, idcaptcha, {
 					                    theme:\'white\',
 					                    tabindex:0,
@@ -680,6 +680,7 @@ class WR_CF_Gadget_Contactform_Js_Form_Frontend extends WR_CF_Gadget_Base {
 					                                return false;
 					                            }
 					                        });
+					                        $(form).find(".form-captcha").show();
 					                    }
 					                });
 					            }

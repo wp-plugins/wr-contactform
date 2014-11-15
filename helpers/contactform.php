@@ -1314,11 +1314,19 @@ class WR_Contactform_Helpers_Contactform {
 		$footer = '<div class="jsn-bootstrap wr-contactform-footer">
 					<hr/>
 					<div class="pull-left">
-						<a href="http://www.woorockets.com/wr-contactform/" target="_blank">WR ContactForm</a> by <a href="http://www.woorockets.com/" target="_blank">WooRockets.com</a>
+						<div>
+							<a href="http://www.woorockets.com/wr-contactform/" target="_blank">WR ContactForm</a> by <a href="http://www.woorockets.com/" target="_blank">WooRockets.com</a>
+						</div>
+						<div>
+							<a href="http://www.woorockets.com/docs/wr-contactform/" target="_blank">Documentation</a> |
+							<a href="http://www.woorockets.com/forum/" target="_blank">Support</a>
+						</div>
 					</div>
 					<div class="pull-right">
-						<a href="http://www.woorockets.com/docs/wr-contactform/" target="_blank">Documentation</a> |
-						<a href="http://www.woorockets.com/forum/" target="_blank">Support</a>
+						<span class="wr-other-free-plugins-text">Other free plugins</span>
+						<a class="wr-logo-40 pagebuilder" href="http://www.woorockets.com/plugins/wr-pagebuilder/?utm_source=WR%20CF%20footer&utm_medium=icon&utm_campaign=Cross%20Promo%20Plugins" target="_blank"></a>
+						<a class="wr-logo-40 megamenu" href="http://www.woorockets.com/plugins/wr-megamenu/?utm_source=WR%20CF%20footer&utm_medium=icon&utm_campaign=Cross%20Promo%20Plugins" target="_blank"></a>
+						<a class="wr-logo-40 corsa" href="http://www.woorockets.com/themes/corsa/?utm_source=WR%20CF%20footer&utm_medium=icon&utm_campaign=Cross%20Promo%20Plugins" target="_blank"></a>
 					</div>
 					<div class="clearbreak"></div>
 			</div>';

@@ -302,7 +302,7 @@ class WR_CF_Gadget_Contactform_Frontend extends WR_CF_Gadget_Base {
 		$nameFileByIndentifier = '';
 
 		if ( ! empty( $formSettings->form_captcha ) ) {
-			if ( $formSettings->form_captcha == 1 ) {
+			if ( $formSettings->form_captcha == 1 && isset( $_POST[ 'recaptcha_challenge_field' ] ) ) {
 				include_once ( WR_CONTACTFORM_PATH . 'libraries/3rd-party/recaptchalib.php' );
 				$recaptchaChallenge = isset( $_POST[ 'recaptcha_challenge_field' ] ) ? $_POST[ 'recaptcha_challenge_field' ] : '';
 				$recaptchaResponse = isset( $_POST[ 'recaptcha_response_field' ] ) ? $_POST[ 'recaptcha_response_field' ] : '';

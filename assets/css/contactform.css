@@ -1879,3 +1879,35 @@ html.wr-contactform-modal {
 html {
 	overflow-y: scroll !important;
 }
+
+/* WooRockets logo & banner */
+.wr-logo-40 {
+	float: left;
+	width: 40px;
+	height: 40px;
+	margin: 0px 0px 0px 10px;
+	transition: 0.5s;
+}
+.wr-logo-40.megamenu {
+	background-image: url("../images/logo-40/megamenu.png");
+}
+.wr-logo-40.megamenu:hover {
+	background-image: url("../images/logo-40/megamenu_hover.png");
+}
+.wr-logo-40.pagebuilder {
+	background-image: url("../images/logo-40/pagebuilder.png");
+}
+.wr-logo-40.pagebuilder:hover {
+	background-image: url("../images/logo-40/pagebuilder_hover.png");
+}
+.wr-logo-40.corsa {
+    background-image: url("../images/logo-40/corsa.png");
+    width: 100px !important;
+}
+.wr-logo-40.corsa:hover {
+    background-image: url("../images/logo-40/corsa.png");
+}
+.wr-other-free-plugins-text {
+	float: left;
+	margin: 12px 5px 0px 0px;
+}
