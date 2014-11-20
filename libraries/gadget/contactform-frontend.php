@@ -565,14 +565,14 @@ class WR_CF_Gadget_Contactform_Frontend extends WR_CF_Gadget_Base {
 			if ( count( $listEmailSendToSubmitter ) ) {
 				$getContentSendSubmitter = self::get_content_email( $contentEmailSendToSubmitter, $dataContentEmail, $nameFileByIndentifier, $requiredField, $defaultSubject );
 				$listEmailSubmitter = array();
-				foreach ( $formSubmitter as $item ) {
+				foreach ( $listEmailSendToSubmitter as $item ) {
 					if ( ! empty( $item ) ) {
 						if ( ! empty( $dataContentEmail[ $item ] ) ) {
 							$listEmailSubmitter[ ] = $dataContentEmail[ $item ];
 						}
 					}
 				}
-				$this->send_email_list( $getContentSendSubmitter, $listEmailSendToSubmitter, $fileAttach );
+				$this->send_email_list( $getContentSendSubmitter, $listEmailSubmitter, $fileAttach );
 				// Set the success message if it was a success
 			}
 		}

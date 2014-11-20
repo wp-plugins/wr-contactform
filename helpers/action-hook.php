@@ -415,11 +415,11 @@ class WR_Contactform_Helpers_Hook {
 	 */
 	public static function insert_banner() {
 		$banner1 = '<img width=\"278\" height=\"156\" src=\"' . WR_CONTACTFORM_URI . 'assets/images/banners/PageBuilder_S.jpg' . '\" alt=\"Page Builder\" />';
-		$link1 = '<a style=\"display: block; margin: 0px 1px 20px 1px; line-height: 0;\" href=\"http://www.woorockets.com/plugins/wr-pagebuilder/?utm_source=WR%20CF%20Edit%20Page%20rightcolumn&utm_medium=banner&utm_campaign=Cross%20Promo%20Plugins\">' . $banner1 . '</a>';
+		$link1 = '<a style=\"display: block; margin: 0px 1px 20px 1px; line-height: 0;\" href=\"http://www.woorockets.com/plugins/wr-pagebuilder/?utm_source=ContactForm%20Edit%20Page&utm_medium=banner&utm_campaign=Cross%20Promo%20Plugins\" target=\"_blank\">' . $banner1 . '</a>';
 		$banner2 = '<img width=\"278\" height=\"156\" src=\"' . WR_CONTACTFORM_URI . 'assets/images/banners/MegaMenu_S.jpg' . '\" alt=\"Mega Menu\" />';
-		$link2 = '<a style=\"display: block; margin: 0px 1px 20px 1px; line-height: 0;\" href=\"http://www.woorockets.com/plugins/wr-megamenu/?utm_source=WR%20CF%20Edit%20Page%20rightcolumn&utm_medium=banner&utm_campaign=Cross%20Promo%20Plugins\">' . $banner2 . '</a>';
+		$link2 = '<a style=\"display: block; margin: 0px 1px 20px 1px; line-height: 0;\" href=\"http://www.woorockets.com/plugins/wr-megamenu/?utm_source=ContactForm%20Edit%20Page&utm_medium=banner&utm_campaign=Cross%20Promo%20Plugins\" target=\"_blank\">' . $banner2 . '</a>';
 		$banner3 = '<img width=\"278\" height=\"156\" src=\"' . WR_CONTACTFORM_URI . 'assets/images/banners/Corsa_S.jpg' . '\" alt=\"Corsa\" />';
-		$link3 = '<a style=\"display: block; margin: 0px 1px 20px 1px; line-height: 0;\" href=\"http://www.woorockets.com/themes/corsa/?utm_source=WR%20CF%20Edit%20Page%20rightcolumn&utm_medium=banner&utm_campaign=Cross%20Promo%20Plugins\">' . $banner3 . '</a>';
+		$link3 = '<a style=\"display: block; margin: 0px 1px 20px 1px; line-height: 0;\" href=\"http://www.woorockets.com/themes/corsa/?utm_source=ContactForm%20Edit%20Page&utm_medium=banner&utm_campaign=Cross%20Promo%20Plugins\" target=\"_blank\">' . $banner3 . '</a>';
 		$script = '
 			$("#side-sortables").append("' . $link1 . $link2 . $link3 . '");
 		';

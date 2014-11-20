@@ -74,13 +74,13 @@ if ( ! empty( $customer_account ) ) {
 	</form>
 	<div class="wr-banner-wrapper">
 		<h3>See our other free awesomeness</h3>
-		<a class="wr-banner" href="http://www.woorockets.com/plugins/wr-megamenu/?utm_source=WR%20CF%20backend%20settings&utm_medium=banner&utm_campaign=Cross%20Promo%20Plugins" target="_blank">
+		<a class="wr-banner" href="http://www.woorockets.com/plugins/wr-megamenu/?utm_source=ContactForm%20Setting&utm_medium=banner&utm_campaign=Cross%20Promo%20Plugins" target="_blank">
 			<img width="278" height="156" src="<?php echo WR_CONTACTFORM_URI . 'assets/images/banners/MegaMenu_S.jpg'; ?>" alt="WR Mega Menu" />
 		</a>
-		<a class="wr-banner" href="http://www.woorockets.com/plugins/wr-pagebuilder/?utm_source=WR%20CF%20backend%20settings&utm_medium=banner&utm_campaign=Cross%20Promo%20Plugins" target="_blank">
+		<a class="wr-banner" href="http://www.woorockets.com/plugins/wr-pagebuilder/?utm_source=ContactForm%20Setting&utm_medium=banner&utm_campaign=Cross%20Promo%20Plugins" target="_blank">
 			<img width="278" height="156" src="<?php echo WR_CONTACTFORM_URI . 'assets/images/banners/PageBuilder_S.jpg'; ?>" alt="WR Page Builder" />
 		</a>
-		<a class="wr-banner" href="http://www.woorockets.com/themes/corsa/?utm_source=WR%20CF%20backend%20settings&utm_medium=banner&utm_campaign=Cross%20Promo%20Plugins" target="_blank">
+		<a class="wr-banner" href="http://www.woorockets.com/themes/corsa/?utm_source=ContactForm%20Setting&utm_medium=banner&utm_campaign=Cross%20Promo%20Plugins" target="_blank">
 			<img width="278" height="156" src="<?php echo WR_CONTACTFORM_URI . 'assets/images/banners/Corsa_S.jpg'; ?>" alt="WR Corsa" />
 		</a>
 	</div>
