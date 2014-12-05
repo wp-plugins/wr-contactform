@@ -600,6 +600,10 @@ img.imgSelect2 {
 	margin-bottom: 0px;
 }
 
+.jsn-master .jsn-bootstrap .form-horizontal .control-group .row-fluid {
+    margin-bottom: 10px;
+}
+
 /*========== TOOLBOX ==========*/
 #visualdesign-options-values .extraShowTitle .form-inline .control-group  .controls > .radio:first-child {
     padding-top: 0;
@@ -1097,6 +1101,10 @@ button#btn-select-field-message {
 
 .jsn-master .jsn-bootstrap #form-container .jsn-element-container  .jsn-element-content a {
     color: #025A8D;
+}
+
+.jsn-master .jsn-bootstrap #form-container .jsn-add-more .icon-plus {
+    margin-top: 0px;
 }
 
 /* Google Maps */

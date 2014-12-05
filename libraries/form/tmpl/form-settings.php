@@ -24,20 +24,23 @@ $checkLoadJsBootstrap = '';
 if ( $loadBootstrapJs != '0' && $loadBootstrapJs != 0 ) {
 	$checkLoadJsBootstrap = 'checked="checked" ';
 }
-$envato_username = '';
-$envato_api_key = '';
-$envato_purchase_code = '';
-$customer_account = get_option( 'wr_cf_customer_account', null );
 
-if ( ! empty( $customer_account ) ) {
-	$envato_username = $customer_account['envato_username'];
-	$envato_api_key = $customer_account['envato_api_key'];
-	$envato_purchase_code = $customer_account['envato_purchase_code'];
-	
-	$settings['envato_username'] = $envato_username;
-	$settings['envato_api_key'] = $envato_api_key;
-	$settings['envato_purchase_code'] = $envato_purchase_code;
-	do_action( 'wr_envato_purchase_data', WR_CONTACTFORM_IDENTIFICATION, $settings );
+$default_mail_from = get_option( 'wr_contactform_default_mail_from', WR_Contactform_Helpers_Contactform::get_default_mail_from() );
+
+// Captcha setting
+$global_captcha_setting = get_option( 'wr_contactform_global_captcha_setting', 2 );
+$check_enable_captcha_all = '';
+$check_disable_captcha_all = '';
+$check_use_individual_setting = '';
+switch ( $global_captcha_setting ) {
+	case 1:
+		$check_enable_captcha_all = ' checked="checked"';
+		break;
+	case 0:
+		$check_disable_captcha_all = ' checked="checked"';
+		break;
+	default:
+		$check_use_individual_setting = ' checked="checked"';
 }
 ?>
 <div class="wrap">
@@ -66,12 +69,45 @@ if ( ! empty( $customer_account ) ) {
 					<p class="description"><?php echo '' . __( 'You should choose NOT to load Bootstrap JS / CSS if your theme or some other plugin installed on your website already loaded it.', WR_CONTACTFORM_TEXTDOMAIN );?></p>
 				</td>
 			</tr>
+			<tr valign="top">
+				<th scope="row">
+					<label><?php _e( 'From Email', WR_CONTACTFORM_TEXTDOMAIN );?></label>
+				</th>
+				<td>
+					<input type="text" value="<?php esc_attr_e( $default_mail_from ); ?>" class="regular-text" id="default_mail_from" name="wr_contactform_config[wr_contactform_default_mail_from]" autocomplete="off" />
+				</td>
+			</tr>
+			<tr valign="top">
+				<th scope="row">
+					<label><?php echo '' . __( 'Captcha Setting', WR_CONTACTFORM_TEXTDOMAIN );?></label>
+				</th>
+				<td>
+					<fieldset>
+						<label>
+							<input type="radio" name="wr_contactform_config[wr_contactform_global_captcha_setting]" value="1"<?php echo $check_enable_captcha_all;?> />
+							<span><?php _e( 'Enable Captcha for all forms', WR_CONTACTFORM_TEXTDOMAIN );?></span>
+						</label>
+						<br />
+						<label>
+							<input type="radio" name="wr_contactform_config[wr_contactform_global_captcha_setting]" value="0"<?php echo $check_disable_captcha_all;?> />
+							<span><?php _e( 'Disable Captcha for all forms', WR_CONTACTFORM_TEXTDOMAIN );?></span>
+						</label>
+						<br />
+						<label>
+							<input type="radio" name="wr_contactform_config[wr_contactform_global_captcha_setting]" value="2"<?php echo $check_use_individual_setting;?> />
+							<span><?php _e( 'Use Form\'s individual setting', WR_CONTACTFORM_TEXTDOMAIN );?></span>
+						</label>
+					</fieldset>
+				</td>
+			</tr>
 			<?php do_action( 'wr_contactform_action_config' );?>
 			</tbody>
 		</table>
 		<p class="submit">
 			<input type="submit" value="Save Changes" class="button button-primary" id="submit" name="submit"></p>
 	</form>
+
+	<!-- Banners -->
 	<div class="wr-banner-wrapper">
 		<h3>See our other free awesomeness</h3>
 		<a class="wr-banner" href="http://www.woorockets.com/plugins/wr-megamenu/?utm_source=ContactForm%20Setting&utm_medium=banner&utm_campaign=Cross%20Promo%20Plugins" target="_blank">

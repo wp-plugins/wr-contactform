@@ -64,3 +64,15 @@ For further information, product details, help and tutorials, please visit our w
 #Fixed Error XSS if enter special characters in Single Line Input/ Password/ Name/ Address/ Multi-line-input
 #Fixed Data of name & address displays not correctly in the View Submission screen
 #Fixed Recaptcha isn't displayed after submit form
+
+= 1.1.2 =
+
+#Fixed footer links
+
+= 1.1.3 =
+
+^Added From Email parameter
+^Added Option to enable/disable Captcha globally
+#Fixed Bug in email sent to submitters
+#Fixed Some displaying bugs
+

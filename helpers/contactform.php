@@ -1095,35 +1095,38 @@ class WR_Contactform_Helpers_Contactform {
 				}
 				$html .= "<div data-value=\"{$contentForm->page_id}\" class=\"jsn-form-content hide\">{$htmlForm}";
 				if ( $i + 1 == count( $formPages ) ) {
-					if ( ! empty( $formSettings->form_captcha ) && $formSettings->form_captcha == 1 ) {
+					$global_captcha_setting = get_option( 'wr_contactform_global_captcha_setting', 2 );
+					if ( $global_captcha_setting != 0 ) {
+						if ( ! empty( $formSettings->form_captcha ) && $formSettings->form_captcha == 1 ) {
 
-						if ( $scheme == 'https' ) {
-							$html .= '<script type="text/javascript" src="https://www.google.com/recaptcha/api/js/recaptcha_ajax.js"></script>';
+							if ( $scheme == 'https' ) {
+								$html .= '<script type="text/javascript" src="https://www.google.com/recaptcha/api/js/recaptcha_ajax.js"></script>';
+							}
+							else {
+								$html .= '<script type="text/javascript" src="http://www.google.com/recaptcha/api/js/recaptcha_ajax.js"></script>';
+							}
+							$html .= '<div id="' . md5( date( 'Y-m-d H:i:s' ) . $i . $formName ) . '"  publickey="' . WR_CONTACTFORM_CAPTCHA_PUBLICKEY . '" class="form-captcha control-group"></div>';
 						}
-						else {
-							$html .= '<script type="text/javascript" src="http://www.google.com/recaptcha/api/js/recaptcha_ajax.js"></script>';
+						else if ( ( ! empty( $formSettings->form_captcha ) && $formSettings->form_captcha == 2 ) || $global_captcha_setting == 1 ) {
+							include_once ( WR_CONTACTFORM_PATH . 'libraries/3rd-party/securimage/securimage.php' );
+							$img = new Securimage();
+							$img->case_sensitive = true; // true to use case sensitve codes - not recommended
+							$img->image_bg_color = new Securimage_Color( '#ffffff' ); // image background color
+							$img->text_color = new Securimage_Color( '#000000' ); // captcha text color
+							$img->num_lines = 0; // how many lines to draw over the image
+							$img->line_color = new Securimage_Color( '#0000CC' ); // color of lines over the image
+							$img->namespace = $formName;
+							$img->signature_color = new Securimage_Color( rand( 0, 64 ), rand( 64, 128 ), rand( 128, 255 ) ); // random signature color
+							ob_start();
+							$img->show( WR_CONTACTFORM_PATH . 'libraries/3rd-party/securimage/backgrounds/bg4.png' );
+							$dataCaptcha = base64_encode( ob_get_clean() );
+							$html .= '<div class="control-group wr-captcha-block">
+										<div class="controls">
+										<div class="row-fluid"><img src="data:image/png;base64,' . $dataCaptcha . '" alt="CAPTCHA" /></div>
+										<input type="text" id="wr-captcha" name="captcha" autocomplete="off" placeholder="' . __( 'Captcha', WR_CONTACTFORM_TEXTDOMAIN ) . '">
+										</div>
+										</div>';
 						}
-						$html .= '<div id="' . md5( date( 'Y-m-d H:i:s' ) . $i . $formName ) . '"  publickey="' . WR_CONTACTFORM_CAPTCHA_PUBLICKEY . '" class="form-captcha control-group"></div>';
-					}
-					else if ( ! empty( $formSettings->form_captcha ) && $formSettings->form_captcha == 2 ) {
-						include_once ( WR_CONTACTFORM_PATH . 'libraries/3rd-party/securimage/securimage.php' );
-						$img = new Securimage();
-						$img->case_sensitive = true; // true to use case sensitve codes - not recommended
-						$img->image_bg_color = new Securimage_Color( '#ffffff' ); // image background color
-						$img->text_color = new Securimage_Color( '#000000' ); // captcha text color
-						$img->num_lines = 0; // how many lines to draw over the image
-						$img->line_color = new Securimage_Color( '#0000CC' ); // color of lines over the image
-						$img->namespace = $formName;
-						$img->signature_color = new Securimage_Color( rand( 0, 64 ), rand( 64, 128 ), rand( 128, 255 ) ); // random signature color
-						ob_start();
-						$img->show( WR_CONTACTFORM_PATH . 'libraries/3rd-party/securimage/backgrounds/bg4.png' );
-						$dataCaptcha = base64_encode( ob_get_clean() );
-						$html .= '<div class="control-group wr-captcha-block">
-									<div class="controls">
-									<div class="row-fluid"><img src="data:image/png;base64,' . $dataCaptcha . '" alt="CAPTCHA" /></div>
-									<input type="text" id="wr-captcha" name="captcha" autocomplete="off" placeholder="' . __( 'Captcha', WR_CONTACTFORM_TEXTDOMAIN ) . '">
-									</div>
-									</div>';
 					}
 				}
 				$html .= '</div>';
@@ -1383,5 +1386,19 @@ class WR_Contactform_Helpers_Contactform {
 			10 => __( 'Form draft updated.' )
 		);
 		return $messages;
+	}
+
+	/**
+	 * Default mail from
+	 *
+	 * @return string
+	 */
+	public static function get_default_mail_from() {
+		$sitename = strtolower( $_SERVER['SERVER_NAME'] );
+		if ( substr( $sitename, 0, 4 ) == 'www.' ) {
+			$sitename = substr( $sitename, 4 );
+		}
+		$default_from = 'mail@' . $sitename;
+		return $default_from;
 	}
 }

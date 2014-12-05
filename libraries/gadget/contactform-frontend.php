@@ -301,8 +301,9 @@ class WR_CF_Gadget_Contactform_Frontend extends WR_CF_Gadget_Base {
 		$fileAttach = '';
 		$nameFileByIndentifier = '';
 
-		if ( ! empty( $formSettings->form_captcha ) ) {
-			if ( $formSettings->form_captcha == 1 && isset( $_POST[ 'recaptcha_challenge_field' ] ) ) {
+		$global_captcha_setting = get_option( 'wr_contactform_global_captcha_setting', 2 );
+		if ( $global_captcha_setting != 0 ) {
+			if ( ! empty( $formSettings->form_captcha ) && $formSettings->form_captcha == 1 && isset( $_POST[ 'recaptcha_challenge_field' ] ) ) {
 				include_once ( WR_CONTACTFORM_PATH . 'libraries/3rd-party/recaptchalib.php' );
 				$recaptchaChallenge = isset( $_POST[ 'recaptcha_challenge_field' ] ) ? $_POST[ 'recaptcha_challenge_field' ] : '';
 				$recaptchaResponse = isset( $_POST[ 'recaptcha_response_field' ] ) ? $_POST[ 'recaptcha_response_field' ] : '';
@@ -315,7 +316,7 @@ class WR_CF_Gadget_Contactform_Frontend extends WR_CF_Gadget_Base {
 					return $return;
 				}
 			}
-			else if ( $formSettings->form_captcha == 2 ) {
+			else if ( ( ! empty( $formSettings->form_captcha ) && $formSettings->form_captcha == 2 ) || $global_captcha_setting == 1 ) {
 				if ( ! empty( $_POST[ 'form_name' ] ) && ! empty( $_POST[ 'captcha' ] ) ) {
 					$sCaptcha = $_SESSION[ 'securimage_code_value' ][ $_POST[ 'form_name' ] ] ? $_SESSION[ 'securimage_code_value' ][ $_POST[ 'form_name' ] ] : '';
 					if ( strtolower( $sCaptcha ) != strtolower( $_POST[ 'captcha' ] ) ) {
@@ -696,14 +697,14 @@ class WR_CF_Gadget_Contactform_Frontend extends WR_CF_Gadget_Base {
 		$regex = '/^[_a-zA-Z0-9-]+(\.[_a-zA-Z0-9-]+)*@[a-zA-Z0-9-]+(\.[a-zA-Z0-9-]+)*(\.[a-zA-Z]{2,6})$/';
 		add_filter( 'wp_mail_content_type', array( &$this, 'set_html_content_type' ) );
 		if ( ! empty( $listEmail ) && is_array( $listEmail ) && count( $listEmail ) ) {
-			$headers[ ] = 'From:' . $dataTemplates[ 'from' ];
+			$headers[ ] = 'From: ' . $dataTemplates[ 'from' ];
 			$subject = $dataTemplates[ 'subject' ];
 			$body = $dataTemplates[ 'message' ];
 			$to = '';
 			$attachments = array();
 			$message = stripslashes( $body );
 			if ( ! empty( $dataTemplates[ 'reply' ] ) && preg_match( $regex, $dataTemplates[ 'reply' ] ) ) {
-				$headers[ ] = 'Reply-To: "' . $dataTemplates[ 'reply' ] . '" <' . $dataTemplates[ 'reply' ] . '>\r\n';
+				$headers[ ] = 'Reply-To: ' . $dataTemplates[ 'reply' ] . ' <' . $dataTemplates[ 'reply' ] . '>';
 			}
 			if ( ! empty( $dataTemplates[ 'attach' ] ) && ! empty( $fileAttach ) ) {
 				$attach = $dataTemplates[ 'attach' ];
@@ -717,6 +718,18 @@ class WR_CF_Gadget_Contactform_Frontend extends WR_CF_Gadget_Base {
 					}
 				}
 			}
+
+			// Add filter wp_mail
+			global $wr_contactform_mail_args;
+			if ( empty( $dataTemplates[ 'from' ] ) ) {
+				$wr_contactform_mail_args[ 'from' ] = get_option( 'wr_contactform_default_mail_from', WR_Contactform_Helpers_Contactform::get_default_mail_from() );
+			} else {
+				$wr_contactform_mail_args[ 'from' ] = $dataTemplates[ 'from' ];
+			}
+			$wr_contactform_mail_args[ 'from_name' ] = $dataTemplates[ 'from' ];
+			add_filter( 'wp_mail_from', array( $this, 'set_mail_from' ), 9, 1 );
+			add_filter( 'wp_mail_from_name', array( $this, 'set_mail_from_name' ), 9, 1 );
+
 			foreach ( $listEmail as $email ) {
 				if ( preg_match( $regex, $email ) ) {
 					wp_mail( $email, $subject, $message, $headers, $attachments );
@@ -730,6 +743,26 @@ class WR_CF_Gadget_Contactform_Frontend extends WR_CF_Gadget_Base {
 	function set_html_content_type() {
 
 		return 'text/html';
+	}
+
+	/**
+	 * set "From" argument of mail
+	 *
+	 * @return string
+	 */
+	function set_mail_from( $from ) {
+		global $wr_contactform_mail_args;
+		return $wr_contactform_mail_args[ 'from' ];
+	}
+
+	/**
+	 * set "From name" argument of mail
+	 *
+	 * @return string
+	 */
+	function set_mail_from_name( $from_name ) {
+		global $wr_contactform_mail_args;
+		return $wr_contactform_mail_args[ 'from_name' ];
 	}
 
 	/**
