@@ -57,21 +57,24 @@ For further information, product details, help and tutorials, please visit our w
 == Changelog ==
 
 = 1.1.1 =
-^ Added new Edit Style button in Element Setting\n
-^ Improved Export feature
-# Fixed Can't scroll up & down when using Add new form page on Chrome & Opera
-# Fixed Error XSS if enter special characters in Single Line Input/ Password/ Name/ Address/ Multi-line-input
-# Fixed Data of name & address displays not correctly in the View Submission screen
-# Fixed Recaptcha isn't displayed after submit form
+
+ * Added new Edit Style button in Element Setting
+ * Improved Export feature
+ * Fixed Can't scroll up & down when using Add new form page on Chrome & Opera
+ * Fixed Error XSS if enter special characters in Single Line Input/ Password/ Name/ Address/ Multi-line-input
+ * Fixed Data of name & address displays not correctly in the View Submission screen
+ * Fixed Recaptcha isn't displayed after submit form
 
 = 1.1.2 =
-# Fixed footer links
+
+ * Fixed footer links
 
 = 1.1.3 =
-^ Added From Email parameter
-^ Added Option to enable/disable Captcha globally
-# Fixed Bug in email sent to submitters
-# Fixed Some displaying bugs
+
+ * Added From Email parameter
+ * Added Option to enable/disable Captcha globally
+ * Fixed Bug in email sent to submitters
+ * Fixed Some displaying bugs
 
 
 
