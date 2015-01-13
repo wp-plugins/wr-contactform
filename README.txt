@@ -1,5 +1,5 @@
 === WR ContactForm ===
-Contributors: woorockets, hieudm, tonybui-1
+Contributors: woorockets, hieudm, tonybui-1, son-tung-mr
 Tags: contact, contact form, contact form builder, admin, advanced, content, easy to use, editor, element, form builder, page, plugin, post, responsive, visual, widget, contact us, feedback form, web form
 Requires at least: 3.8
 Tested up to: 4.0
