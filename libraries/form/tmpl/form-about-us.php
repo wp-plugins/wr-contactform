@@ -19,32 +19,32 @@ $style = '
 	.wr-banner-l img { margin-right: 10px; }
 	.wr-plugin-version { display: inline-block; vertical-align: top; margin: 5px 0px 0px 5px; font-size: 14px; }
 ';
-WR_Megamenu_Init_Assets::inline( 'css', $style );
+WR_CF_Init_Assets::inline( 'css', $style );
 ?>
 
 <div class="wrap">
 	<div class="jsn-bootstrap3">
 		<h2><strong><?php _e( 'Welcome to WR Contact Form', WR_CONTACTFORM_TEXTDOMAIN ); ?></strong></h2>
 		<div class="wr-button-bar">
-			<a class="btn btn-info wr-button" href="<?php echo admin_url( 'edit.php?post_type=wr_cf_post_type&page=wr-contactform-settings' ); ?>">Settings</a>
-			<a class="btn btn-info wr-button" href="http://bit.ly/wrcf-about-docs" target="_blank">Docs</a>
+			<a class="btn btn-info wr-button" href="<?php echo admin_url( 'edit.php?post_type=wr_cf_post_type&page=wr-contactform-settings' ); ?>"><?php _e( 'Settings', WR_CONTACTFORM_TEXTDOMAIN ); ?></a>
+			<a class="btn btn-info wr-button" href="http://bit.ly/wrcf-about-docs" target="_blank"><?php _e( 'Docs', WR_CONTACTFORM_TEXTDOMAIN ); ?></a>
 			<a href="https://twitter.com/WooRockets" class="twitter-follow-button" data-show-count="false" data-size="large">Follow @WooRockets</a>
 			<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
-			<span class="wr-plugin-version">Version <?php $plugin_data = get_plugin_data( WR_CONTACTFORM_PLUGIN_FILE ); echo $plugin_data['Version']; ?>. Follow us to get latest updates!</span>
+			<span class="wr-plugin-version"><?php _e( 'Version', WR_CONTACTFORM_TEXTDOMAIN ); ?> <?php $plugin_data = get_plugin_data( WR_CONTACTFORM_PLUGIN_FILE ); echo $plugin_data['Version']; ?>. <?php _e( 'Follow us to get latest updates!', WR_CONTACTFORM_TEXTDOMAIN ); ?></span>
 		</div>
-		<p>Thank you for installing! <strong>WR Contact Form</strong> is a WordPress form plugin which helps you create forms quickly and easily – from normal forms to complex forms. Moreover, you can easily manage all the submissions as the administrator. The configured form can be published in any part of a website including: in page, post content and widgets via shortcode.</p>
-		<h2>Hot Features</h2>
+		<p><?php _e( 'Thank you for installing! <strong>WR Contact Form</strong> is a WordPress form plugin which helps you create forms quickly and easily – from normal forms to complex forms. Moreover, you can easily manage all the submissions as the administrator. The configured form can be published in any part of a website including: in page, post content and widgets via shortcode.', WR_CONTACTFORM_TEXTDOMAIN ); ?></p>
+		<h2><?php _e( 'Hot Features', WR_CONTACTFORM_TEXTDOMAIN ); ?></h2>
 		<div class="feature-block">
-			<h3>Drag and drop</h3>
-			<p>You can save a lot of time with intuitive drag and drop operations. This can be used in many processes when working with <strong>WR Contact Form</strong>.</p>
-		</div>
-		<div class="feature-block">
-			<h3>Prevent Spam</h3>
-			<p>To protect your website from spam, <strong>the Captcha</strong> function should be used. The system will require users to fill in the <strong>CAPTCHA</strong> to protect forms from spam and abuse.</p>
+			<h3><?php _e( 'Drag and drop', WR_CONTACTFORM_TEXTDOMAIN ); ?></h3>
+			<p><?php _e( 'You can save a lot of time with intuitive drag and drop operations. This can be used in many processes when working with <strong>WR Contact Form</strong>.', WR_CONTACTFORM_TEXTDOMAIN ); ?></p>
 		</div>
 		<div class="feature-block">
-			<h3>Multiple forms</h3>
-			<p>You can create as many forms as you want. In a single form you can also choose the most suitable fields for your form.</p>
+			<h3><?php _e( 'Prevent Spam', WR_CONTACTFORM_TEXTDOMAIN ); ?></h3>
+			<p><?php _e( 'To protect your website from spam, <strong>the Captcha</strong> function should be used. The system will require users to fill in the <strong>CAPTCHA</strong> to protect forms from spam and abuse.', WR_CONTACTFORM_TEXTDOMAIN ); ?></p>
+		</div>
+		<div class="feature-block">
+			<h3><?php _e( 'Multiple forms', WR_CONTACTFORM_TEXTDOMAIN ); ?></h3>
+			<p><?php _e( 'You can create as many forms as you want. In a single form you can also choose the most suitable fields for your form.', WR_CONTACTFORM_TEXTDOMAIN ); ?></p>
 		</div>
 		<!-- <div role="tabpanel">
 			<ul class="nav nav-tabs wr-tabs" role="tablist">
@@ -89,7 +89,7 @@ WR_Megamenu_Init_Assets::inline( 'css', $style );
 		<br />
 		<!-- Banners -->
 		<div class="wr-banner-wrapper">
-			<h3>See our other free awesomeness</h3>
+			<h3><?php _e( 'See our other free awesomeness', WR_CONTACTFORM_TEXTDOMAIN ); ?></h3>
 			<a class="wr-banner" href="http://www.woorockets.com/plugins/wr-megamenu/?utm_source=ContactForm%20Setting&utm_medium=banner&utm_campaign=Cross%20Promo%20Plugins" target="_blank">
 				<img width="278" height="156" src="<?php echo WR_CONTACTFORM_URI . 'assets/images/banners/MegaMenu_S.jpg'; ?>" alt="WR Mega Menu" />
 			</a>

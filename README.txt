@@ -64,3 +64,8 @@ For further information, product details, help and tutorials, please visit our w
 = 1.1.4 =
  * Fixed Some minor bugs
  * Added About page
+
+= 1.1.5 =
+ * Fixed Able to enter the same name for both Custom Field and Mailchimp Field
+ * Replace all strings by readable ones
+ * Improved Wrap all strings in About us page to translation function
