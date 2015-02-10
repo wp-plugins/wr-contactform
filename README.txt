@@ -69,3 +69,6 @@ For further information, product details, help and tutorials, please visit our w
  * Fixed Able to enter the same name for both Custom Field and Mailchimp Field
  * Replace all strings by readable ones
  * Improved Wrap all strings in About us page to translation function
+
+= 1.1.6 =
+ * Improved About page
