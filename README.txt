@@ -72,3 +72,8 @@ For further information, product details, help and tutorials, please visit our w
 
 = 1.1.6 =
  * Improved About page
+
+= 1.1.7 =
+ * Fixed php errors detected by Query Monitor plugin
+ * Fixed Viewing function of created forms not working
+ * Fixed Alignment issue in responsive layout
