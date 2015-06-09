@@ -83,3 +83,6 @@ For further information, product details, help and tutorials, please visit our w
  * Fixed conflict between Wr Contact Form and NextGen Gallery
  * Fixed blank Add New form on Xampp
  * Fixed some bugs on our themes
+
+= 1.1.9 =
+ * Changed banners in back-end
