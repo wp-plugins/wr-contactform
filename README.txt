@@ -85,4 +85,4 @@ For further information, product details, help and tutorials, please visit our w
  * Fixed some bugs on our themes
 
 = 1.1.9 =
- * Changed banners in back-end
+ * Minor changes in back-end setting
