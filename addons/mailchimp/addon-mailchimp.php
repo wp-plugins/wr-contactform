@@ -81,15 +81,23 @@ class WR_CF_Addon_Mailchimp {
 	 * @param   array   $formPage      Form page
 	 */
 	public function settings_panel( $form, $formStyle, $formSettings, $listPage, $listFontType, $items, $formItems, $formPage ) {
-		if ( isset( $_GET['post'] ) ) {
+		if ( isset( $_GET['post'] ) && (int) $_GET['post'] ) {
 			global $wpdb;
 			$mailchimpSettings = json_decode( get_post_meta( $_GET['post'], 'mailchimp_settings', true ) );
-			$formPages = $wpdb->get_results( "SELECT page_content FROM {$wpdb->prefix}wr_contactform_form_pages WHERE form_id = {$_GET['post']} ORDER BY page_id ASC" );
-			$formFields = array();
-			foreach ( $formPages as $formPage ) {
-				$formPageFields = json_decode( $formPage->page_content );
-				$formFields += $formPageFields;
+
+			$form_id = (int) $_GET['post'];
+			if ( $form_id > 0 ) {
+				$formPages = $wpdb->get_results( "SELECT page_content FROM {$wpdb->prefix}wr_contactform_form_pages WHERE form_id = {$form_id} ORDER BY page_id ASC" );
+				$formFields = array();
+				foreach ( $formPages as $formPage ) {
+					$formPageFields = json_decode( $formPage->page_content );
+					$formFields += $formPageFields;
+				}
+			} else {
+				return;
 			}
+
+			
 		} else {
 			$mailchimpSettings = new stdClass();
 			$mailchimpSettings->use = 'no';
