@@ -87,3 +87,7 @@ For further information, product details, help and tutorials, please visit our w
 
 = 1.1.9 =
  * Minor changes in back-end setting
+
+= 1.1.10 =
+ * Update ZeroClipboard library
+ * Fixed Some minor bugs
